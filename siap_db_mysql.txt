@@ -1,0 +1,434 @@
+-- Archivo de volcado MySQL adaptado desde PostgreSQL
+-- Generado para la base de datos basada en el diagrama UML proporcionado
+
+-- Eliminar tablas si existen para evitar conflictos
+DROP TABLE IF EXISTS DetalleVenta;
+DROP TABLE IF EXISTS Pago;
+DROP TABLE IF EXISTS Venta;
+DROP TABLE IF EXISTS Cliente;
+DROP TABLE IF EXISTS DetalleRecepcion;
+DROP TABLE IF EXISTS RecepcionMercancia;
+DROP TABLE IF EXISTS DetallePedidoProveedor;
+DROP TABLE IF EXISTS PedidoProveedor;
+DROP TABLE IF EXISTS Inventario;
+DROP TABLE IF EXISTS Producto;
+DROP TABLE IF EXISTS Proveedor;
+DROP TABLE IF EXISTS ReporteCaja;
+DROP TABLE IF EXISTS Usuario;
+
+-- Crear tipos enumerados (En MySQL usamos ENUM en lugar de CREATE TYPE)
+-- No es necesario crearlos por separado como en PostgreSQL
+
+-- Tabla Usuario
+CREATE TABLE Usuario (
+    usuarioID INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    nombreUsuario VARCHAR(50) NOT NULL UNIQUE,
+    contraseña VARCHAR(100) NOT NULL,
+    tipoUsuario ENUM('Administrador', 'Vendedor', 'Encargado', 'Almacen') NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    telefono VARCHAR(20),
+    fechaCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    activo BOOLEAN DEFAULT TRUE
+);
+
+-- Tabla Proveedor
+CREATE TABLE Proveedor (
+    proveedorID INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    direccion TEXT,
+    telefono VARCHAR(20),
+    email VARCHAR(100),
+    personaContacto VARCHAR(100),
+    rfc VARCHAR(13),
+    activo BOOLEAN DEFAULT TRUE
+);
+
+-- Tabla Producto
+CREATE TABLE Producto (
+    productoID INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(50) UNIQUE NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    proveedorID INT,
+    precioCompra DECIMAL(10,2) NOT NULL,
+    precioVentaPlancha DECIMAL(10,2) NOT NULL,
+    precioVentaMediaPlancha DECIMAL(10,2) NOT NULL,
+    precioVentaUnitario DECIMAL(10,2) NOT NULL,
+    unidadesPorPlancha INT NOT NULL,
+    imagen VARCHAR(255),
+    activo BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (proveedorID) REFERENCES Proveedor(proveedorID)
+);
+
+-- Tabla Inventario
+CREATE TABLE Inventario (
+    inventarioID INT AUTO_INCREMENT PRIMARY KEY,
+    productoID INT UNIQUE,
+    cantidadPlanchas INT DEFAULT 0,
+    cantidadUnidades INT DEFAULT 0,
+    ultimaActualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (productoID) REFERENCES Producto(productoID)
+);
+
+-- Tabla Cliente
+CREATE TABLE Cliente (
+    clienteID INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellidos VARCHAR(100),
+    telefono VARCHAR(20),
+    email VARCHAR(100),
+    direccion TEXT,
+    esRecurrente BOOLEAN DEFAULT FALSE,
+    saldoPendiente DECIMAL(10,2) DEFAULT 0,
+    fechaRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabla PedidoProveedor
+CREATE TABLE PedidoProveedor (
+    pedidoProveedorID INT AUTO_INCREMENT PRIMARY KEY,
+    proveedorID INT,
+    usuarioID INT,
+    fechaPedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fechaEntregaEstimada DATE,
+    fechaEntregaReal DATE,
+    estado ENUM('Creado', 'Enviado', 'Recibido', 'Cancelado') DEFAULT 'Creado',
+    totalPedido DECIMAL(10,2) DEFAULT 0,
+    notas TEXT,
+    FOREIGN KEY (proveedorID) REFERENCES Proveedor(proveedorID),
+    FOREIGN KEY (usuarioID) REFERENCES Usuario(usuarioID)
+);
+
+-- Tabla DetallePedidoProveedor
+CREATE TABLE DetallePedidoProveedor (
+    detallePedidoProveedorID INT AUTO_INCREMENT PRIMARY KEY,
+    pedidoProveedorID INT,
+    productoID INT,
+    cantidadPlanchas INT NOT NULL,
+    precioUnitario DECIMAL(10,2) NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (pedidoProveedorID) REFERENCES PedidoProveedor(pedidoProveedorID),
+    FOREIGN KEY (productoID) REFERENCES Producto(productoID)
+);
+
+-- Tabla RecepcionMercancia
+CREATE TABLE RecepcionMercancia (
+    recepcionID INT AUTO_INCREMENT PRIMARY KEY,
+    pedidoProveedorID INT,
+    usuarioID INT,
+    fechaRecepcion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    numeroFactura VARCHAR(50),
+    totalFactura DECIMAL(10,2) DEFAULT 0,
+    estado ENUM('Pendiente', 'Parcial', 'Completa', 'Rechazada') DEFAULT 'Pendiente',
+    notas TEXT,
+    FOREIGN KEY (pedidoProveedorID) REFERENCES PedidoProveedor(pedidoProveedorID),
+    FOREIGN KEY (usuarioID) REFERENCES Usuario(usuarioID)
+);
+
+-- Tabla DetalleRecepcion
+CREATE TABLE DetalleRecepcion (
+    detalleRecepcionID INT AUTO_INCREMENT PRIMARY KEY,
+    recepcionID INT,
+    productoID INT,
+    cantidadRecibida INT NOT NULL,
+    precioUnitario DECIMAL(10,2) NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    observaciones TEXT,
+    FOREIGN KEY (recepcionID) REFERENCES RecepcionMercancia(recepcionID),
+    FOREIGN KEY (productoID) REFERENCES Producto(productoID)
+);
+
+-- Tabla Venta
+CREATE TABLE Venta (
+    ventaID INT AUTO_INCREMENT PRIMARY KEY,
+    usuarioID INT,
+    clienteID INT,
+    fechaVenta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    subtotal DECIMAL(10,2) NOT NULL,
+    impuestos DECIMAL(10,2) NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    metodoPago ENUM('Efectivo', 'Tarjeta', 'Transferencia', 'Crédito'),
+    estado ENUM('Pendiente', 'Pagada', 'Cancelada') DEFAULT 'Pendiente',
+    FOREIGN KEY (usuarioID) REFERENCES Usuario(usuarioID),
+    FOREIGN KEY (clienteID) REFERENCES Cliente(clienteID)
+);
+
+-- Tabla DetalleVenta
+CREATE TABLE DetalleVenta (
+    detalleVentaID INT AUTO_INCREMENT PRIMARY KEY,
+    ventaID INT,
+    productoID INT,
+    cantidad INT NOT NULL,
+    tipoVenta ENUM('Plancha', 'MediaPlancha', 'Unitario') NOT NULL,
+    precioUnitario DECIMAL(10,2) NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (ventaID) REFERENCES Venta(ventaID),
+    FOREIGN KEY (productoID) REFERENCES Producto(productoID)
+);
+
+-- Tabla Pago
+CREATE TABLE Pago (
+    pagoID INT AUTO_INCREMENT PRIMARY KEY,
+    ventaID INT,
+    usuarioID INT,
+    fechaPago TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    monto DECIMAL(10,2) NOT NULL,
+    tipoPago ENUM('Efectivo', 'Tarjeta', 'Transferencia', 'Crédito') NOT NULL,
+    referencia VARCHAR(100),
+    FOREIGN KEY (ventaID) REFERENCES Venta(ventaID),
+    FOREIGN KEY (usuarioID) REFERENCES Usuario(usuarioID)
+);
+
+-- Tabla ReporteCaja
+CREATE TABLE ReporteCaja (
+    reporteID INT AUTO_INCREMENT PRIMARY KEY,
+    usuarioID INT,
+    fechaApertura TIMESTAMP NOT NULL,
+    fechaCierre TIMESTAMP NULL,
+    montoInicial DECIMAL(10,2) NOT NULL,
+    montoFinal DECIMAL(10,2) NULL,
+    totalVentas DECIMAL(10,2) DEFAULT 0,
+    diferencia DECIMAL(10,2) NULL,
+    estado ENUM('Abierta', 'Cerrada') DEFAULT 'Abierta',
+    FOREIGN KEY (usuarioID) REFERENCES Usuario(usuarioID)
+);
+
+-- Índices para mejorar rendimiento
+CREATE INDEX idx_producto_proveedor ON Producto(proveedorID);
+CREATE INDEX idx_pedido_proveedor ON PedidoProveedor(proveedorID);
+CREATE INDEX idx_pedido_usuario ON PedidoProveedor(usuarioID);
+CREATE INDEX idx_detalle_pedido ON DetallePedidoProveedor(pedidoProveedorID);
+CREATE INDEX idx_recepcion_pedido ON RecepcionMercancia(pedidoProveedorID);
+CREATE INDEX idx_detalle_recepcion ON DetalleRecepcion(recepcionID);
+CREATE INDEX idx_venta_cliente ON Venta(clienteID);
+CREATE INDEX idx_venta_usuario ON Venta(usuarioID);
+CREATE INDEX idx_detalle_venta ON DetalleVenta(ventaID);
+CREATE INDEX idx_pago_venta ON Pago(ventaID);
+
+-- Función para calcular precio según tipo de venta (Adaptado para MySQL)
+DELIMITER //
+CREATE FUNCTION calcular_precio(
+    p_producto_id INT,
+    p_tipo_venta VARCHAR(20),
+    p_cantidad INT
+) RETURNS DECIMAL(10,2)
+BEGIN
+    DECLARE v_precio DECIMAL(10,2);
+    DECLARE v_precio_plancha DECIMAL(10,2);
+    DECLARE v_precio_media_plancha DECIMAL(10,2);
+    DECLARE v_precio_unitario DECIMAL(10,2);
+    
+    SELECT precioVentaPlancha, precioVentaMediaPlancha, precioVentaUnitario 
+    INTO v_precio_plancha, v_precio_media_plancha, v_precio_unitario
+    FROM Producto WHERE productoID = p_producto_id;
+    
+    IF p_tipo_venta = 'Plancha' THEN
+        SET v_precio = v_precio_plancha * p_cantidad;
+    ELSEIF p_tipo_venta = 'MediaPlancha' THEN
+        SET v_precio = v_precio_media_plancha * p_cantidad;
+    ELSEIF p_tipo_venta = 'Unitario' THEN
+        SET v_precio = v_precio_unitario * p_cantidad;
+    END IF;
+    
+    RETURN v_precio;
+END //
+DELIMITER ;
+
+-- Función para actualizar stock (Adaptado para MySQL)
+DELIMITER //
+CREATE PROCEDURE actualizar_stock(
+    IN p_producto_id INT,
+    IN p_cantidad INT,
+    IN p_tipo_movimiento VARCHAR(10)
+)
+BEGIN
+    DECLARE v_cantidadPlanchas INT;
+    DECLARE v_cantidadUnidades INT;
+    DECLARE v_unidades_por_plancha INT;
+    DECLARE v_planchas_completas INT;
+    DECLARE v_unidades_restantes INT;
+    DECLARE v_existe INT DEFAULT 0;
+    DECLARE v_unidades_disponibles INT;
+    DECLARE v_unidades_faltantes INT;
+    DECLARE v_planchas_necesarias INT;
+    DECLARE v_unidades_adicionales INT;
+    DECLARE v_unidades_sobrantes INT;
+    
+    -- Obtener información del inventario actual
+    SELECT cantidadPlanchas, cantidadUnidades INTO v_cantidadPlanchas, v_cantidadUnidades 
+    FROM Inventario WHERE productoID = p_producto_id;
+    
+    -- Verificar si existe el registro
+    SELECT COUNT(*) INTO v_existe FROM Inventario WHERE productoID = p_producto_id;
+    
+    -- Obtener unidades por plancha
+    SELECT unidadesPorPlancha INTO v_unidades_por_plancha FROM Producto WHERE productoID = p_producto_id;
+    
+    IF p_tipo_movimiento = 'Entrada' THEN
+        -- Calcular planchas completas y unidades restantes
+        SET v_planchas_completas = FLOOR(p_cantidad / v_unidades_por_plancha);
+        SET v_unidades_restantes = p_cantidad % v_unidades_por_plancha;
+        
+        IF v_existe > 0 THEN
+            -- Actualizar inventario existente
+            UPDATE Inventario 
+            SET cantidadPlanchas = cantidadPlanchas + v_planchas_completas,
+                cantidadUnidades = cantidadUnidades + v_unidades_restantes,
+                ultimaActualizacion = CURRENT_TIMESTAMP
+            WHERE productoID = p_producto_id;
+        ELSE
+            -- Crear nuevo registro de inventario
+            INSERT INTO Inventario (productoID, cantidadPlanchas, cantidadUnidades)
+            VALUES (p_producto_id, v_planchas_completas, v_unidades_restantes);
+        END IF;
+        
+    ELSEIF p_tipo_movimiento = 'Salida' THEN
+        -- Implementar lógica para restar del inventario
+        IF v_existe > 0 THEN
+            IF v_cantidadUnidades >= p_cantidad THEN
+                -- Si hay suficientes unidades sueltas
+                UPDATE Inventario 
+                SET cantidadUnidades = cantidadUnidades - p_cantidad,
+                    ultimaActualizacion = CURRENT_TIMESTAMP
+                WHERE productoID = p_producto_id;
+            ELSE
+                -- Calcular cuántas planchas debo convertir en unidades
+                SET v_unidades_disponibles = v_cantidadUnidades;
+                SET v_unidades_faltantes = p_cantidad - v_unidades_disponibles;
+                SET v_planchas_necesarias = CEIL(v_unidades_faltantes / v_unidades_por_plancha);
+                SET v_unidades_adicionales = v_planchas_necesarias * v_unidades_por_plancha;
+                SET v_unidades_sobrantes = v_unidades_adicionales - v_unidades_faltantes;
+                
+                IF v_cantidadPlanchas >= v_planchas_necesarias THEN
+                    UPDATE Inventario 
+                    SET cantidadPlanchas = cantidadPlanchas - v_planchas_necesarias,
+                        cantidadUnidades = v_unidades_sobrantes,
+                        ultimaActualizacion = CURRENT_TIMESTAMP
+                    WHERE productoID = p_producto_id;
+                ELSE
+                    SIGNAL SQLSTATE '45000' 
+                    SET MESSAGE_TEXT = 'No hay suficiente stock para el producto';
+                END IF;
+            END IF;
+        ELSE
+            SIGNAL SQLSTATE '45000' 
+            SET MESSAGE_TEXT = 'No existe inventario para este producto';
+        END IF;
+        
+    ELSEIF p_tipo_movimiento = 'Ajuste' THEN
+        -- Para ajustes directos de inventario (positivos o negativos)
+        SET v_planchas_completas = FLOOR(p_cantidad / v_unidades_por_plancha);
+        SET v_unidades_restantes = p_cantidad % v_unidades_por_plancha;
+        
+        IF v_existe > 0 THEN
+            UPDATE Inventario 
+            SET cantidadPlanchas = v_planchas_completas,
+                cantidadUnidades = v_unidades_restantes,
+                ultimaActualizacion = CURRENT_TIMESTAMP
+            WHERE productoID = p_producto_id;
+        ELSE
+            INSERT INTO Inventario (productoID, cantidadPlanchas, cantidadUnidades)
+            VALUES (p_producto_id, v_planchas_completas, v_unidades_restantes);
+        END IF;
+    END IF;
+END //
+DELIMITER ;
+
+-- Función para verificar disponibilidad (Adaptado para MySQL)
+DELIMITER //
+CREATE FUNCTION verificar_disponibilidad(
+    p_producto_id INT,
+    p_cantidad INT,
+    p_tipo_venta VARCHAR(20)
+) RETURNS BOOLEAN
+BEGIN
+    DECLARE v_cantidadPlanchas INT;
+    DECLARE v_cantidadUnidades INT;
+    DECLARE v_unidades_por_plancha INT;
+    DECLARE v_total_unidades INT;
+    DECLARE v_unidades_requeridas INT;
+    
+    -- Obtener información del inventario
+    SELECT cantidadPlanchas, cantidadUnidades INTO v_cantidadPlanchas, v_cantidadUnidades
+    FROM Inventario WHERE productoID = p_producto_id;
+    
+    -- Obtener unidades por plancha
+    SELECT unidadesPorPlancha INTO v_unidades_por_plancha 
+    FROM Producto WHERE productoID = p_producto_id;
+    
+    -- Calcular total de unidades disponibles
+    SET v_total_unidades = (v_cantidadPlanchas * v_unidades_por_plancha) + v_cantidadUnidades;
+    
+    -- Calcular unidades requeridas según tipo de venta
+    IF p_tipo_venta = 'Plancha' THEN
+        SET v_unidades_requeridas = p_cantidad * v_unidades_por_plancha;
+    ELSEIF p_tipo_venta = 'MediaPlancha' THEN
+        SET v_unidades_requeridas = p_cantidad * (v_unidades_por_plancha / 2);
+    ELSEIF p_tipo_venta = 'Unitario' THEN
+        SET v_unidades_requeridas = p_cantidad;
+    END IF;
+    
+    RETURN v_total_unidades >= v_unidades_requeridas;
+END //
+DELIMITER ;
+
+-- Triggers para actualización automática de totales en pedidos
+DELIMITER //
+CREATE TRIGGER tr_actualizar_total_pedido
+AFTER INSERT ON DetallePedidoProveedor
+FOR EACH ROW
+BEGIN
+    UPDATE PedidoProveedor
+    SET totalPedido = (SELECT SUM(subtotal) FROM DetallePedidoProveedor WHERE pedidoProveedorID = NEW.pedidoProveedorID)
+    WHERE pedidoProveedorID = NEW.pedidoProveedorID;
+END //
+
+CREATE TRIGGER tr_actualizar_total_pedido_update
+AFTER UPDATE ON DetallePedidoProveedor
+FOR EACH ROW
+BEGIN
+    UPDATE PedidoProveedor
+    SET totalPedido = (SELECT SUM(subtotal) FROM DetallePedidoProveedor WHERE pedidoProveedorID = NEW.pedidoProveedorID)
+    WHERE pedidoProveedorID = NEW.pedidoProveedorID;
+END //
+
+CREATE TRIGGER tr_actualizar_total_pedido_delete
+AFTER DELETE ON DetallePedidoProveedor
+FOR EACH ROW
+BEGIN
+    UPDATE PedidoProveedor
+    SET totalPedido = (SELECT IFNULL(SUM(subtotal), 0) FROM DetallePedidoProveedor WHERE pedidoProveedorID = OLD.pedidoProveedorID)
+    WHERE pedidoProveedorID = OLD.pedidoProveedorID;
+END //
+DELIMITER ;
+
+-- Triggers para actualización automática de totales en recepciones
+DELIMITER //
+CREATE TRIGGER tr_actualizar_total_recepcion
+AFTER INSERT ON DetalleRecepcion
+FOR EACH ROW
+BEGIN
+    UPDATE RecepcionMercancia
+    SET totalFactura = (SELECT SUM(subtotal) FROM DetalleRecepcion WHERE recepcionID = NEW.recepcionID)
+    WHERE recepcionID = NEW.recepcionID;
+END //
+
+CREATE TRIGGER tr_actualizar_total_recepcion_update
+AFTER UPDATE ON DetalleRecepcion
+FOR EACH ROW
+BEGIN
+    UPDATE RecepcionMercancia
+    SET totalFactura = (SELECT SUM(subtotal) FROM DetalleRecepcion WHERE recepcionID = NEW.recepcionID)
+    WHERE recepcionID = NEW.recepcionID;
+END //
+
+CREATE TRIGGER tr_actualizar_total_recepcion_delete
+AFTER DELETE ON DetalleRecepcion
+FOR EACH ROW
+BEGIN
+    UPDATE RecepcionMercancia
+    SET totalFactura = (SELECT IFNULL(SUM(subtotal), 0) FROM DetalleRecepcion WHERE recepcionID = OLD.recepcionID)
+    WHERE recepcionID = OLD.recepcionID;
+END //
+DELIMITER ;
