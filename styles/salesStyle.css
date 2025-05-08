@@ -1,0 +1,319 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Work Sans', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* MODIFICADO: Sidebar con transición añadida */
+.sidebar {
+    width: 180px;
+    background-color: #30343F;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    transition: left 0.3s ease;
+}
+
+/* NUEVO: Clase para ocultar sidebar */
+.sidebar.active {
+    left: -180px; /* Sidebar se oculta completamente */
+}
+
+/* NUEVO: Floating Logo */
+.floating-logo {
+    position: fixed;
+    top: 20px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    z-index: 30;
+    transition: left 0.3s ease;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.floating-logo .logo {
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 12px;
+    margin-right: 20px;
+    color: white;
+}
+
+.floating-logo .logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* NUEVO: Cuando el sidebar está oculto, el logo se mueve también */
+.sidebar.active ~ .floating-logo {
+    left: -65px; /* Deja visible solo parte del logo */
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* MODIFICADO: Alineado a la derecha */
+    padding: 0 16px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 16px;
+    height: 52px; /* Mantiene el espacio para el tema */
+}
+.sidebar.active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60px; /* Matches the visible portion of the sidebar */
+    background-color: #30343F; /* Matches the sidebar's color */
+    z-index: 9; /* Ensure it appears below the floating logo */
+    opacity: 1; /* Fully visible when sidebar is closed */
+    visibility: visible; /* Ensure it's visible */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60px; /* Matches the visible portion of the sidebar */
+    background-color: #30343F; /* Matches the sidebar's color */
+    z-index: 9; /* Ensure it appears below the floating logo */
+    opacity: 0; /* Hidden when sidebar is open */
+    visibility: hidden; /* Ensure it's not visible */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+/* ELIMINADO: Clase logo dentro del sidebar */
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.menu-item.active {
+    background-color: #E4D9FF;
+    color: black;
+    border-left: 3px solid white; 
+    font-weight: 500;
+    border-top-right-radius: 12px; /* Solo arriba a la derecha */
+    border-bottom-right-radius: 12px; /* Solo abajo a la derecha */
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.menu-item i {
+    margin-right: 12px;
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.logout-btn {
+    margin-top: auto;
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.logout-btn i {
+    margin-right: 8px;
+}
+
+/* MODIFICADO: Main content con transición */
+.main-content {
+    flex-grow: 1;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    margin-left: 180px;
+    transition: margin-left 0.3s ease;
+}
+
+/* NUEVO: Ajuste del contenido cuando sidebar está oculto */
+.sidebar.active ~ .main-content {
+    margin-left: 60px; /* Espacio para la parte visible del logo */
+}
+
+.content-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f5f5f5;
+}
+
+.content-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.content-area {
+    padding: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.sales-container {
+    background-color: white;
+    margin: 0;
+    border-radius: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.register-btn {
+    background-color: #2e3b7c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 100px;
+}
+
+.register-btn:hover {
+    background-color: #232e61;
+}
+
+.register-btn i {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+/* MODIFICADO: Media queries para móviles */
+@media (max-width: 768px) {
+    .sidebar {
+        left: -180px; /* Sidebar comienza oculto */
+    }
+
+    .sidebar.active {
+        left: 0; /* Sidebar se muestra completamente al activarse */
+    }
+
+    .floating-logo {
+        left: -124px; /* Logo parcialmente visible inicialmente */
+    }
+    
+    .sidebar.active ~ .floating-logo {
+        left: 16px; /* Logo completamente visible cuando sidebar activo */
+    }
+
+    .main-content {
+        margin-left: 60px; /* Espacio inicial para logo visible */
+    }
+    
+    .sidebar.active ~ .main-content {
+        margin-left: 180px; /* Espacio cuando sidebar está activo */
+    }
+    
+    /* ELIMINADO: Selector sidebar-toggle ya que no se usa */
+}
+
+/* ELIMINADO: Clase logo-img fuera del floating-logo ya que ahora está incluida ahí */
+
+#register-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+#register-modal .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#register-modal input,
+#register-modal textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+#register-modal button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#cancel-modal {
+    background-color: #ccc;
+}
+
+#confirm-open {
+    background-color: #2e3b7c;
+    color: white;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}

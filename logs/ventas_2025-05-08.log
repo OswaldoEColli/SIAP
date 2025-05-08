@@ -1,0 +1,337 @@
+[2025-05-08 01:12:36] Datos recibidos: {"cliente_id":0,"cliente_nombre":"Cliente General","productos":[{"id":"4","name":"pepsi","price":12,"saleType":"unitario","quantity":1,"subtotal":12}],"subtotal":12,"impuestos":1.92,"total":13.92,"metodo_pago":"Efectivo","referencia_pago":"Efectivo: $20, Cambio: $6.08","nota_cierre":""}
+[2025-05-08 01:12:36] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 01:12:36] Estado de conexión mysqli: conectado
+[2025-05-08 01:12:36] Transacción iniciada
+[2025-05-08 01:12:36] Usuario ID: 1
+[2025-05-08 01:12:36] Cliente ID: 1
+[2025-05-08 01:12:36] Subtotal: 12, Impuestos: 1.92, Total: 13.92
+[2025-05-08 01:12:36] Método de pago: Efectivo
+[2025-05-08 01:12:36] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 01:12:36] ERROR: Cannot add or update a child row: a foreign key constraint fails (`siap`.`venta`, CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`clienteID`) REFERENCES `cliente` (`clienteID`))
+Trace: #0 C:\xampp\htdocs\Servidor-SIAP\controllers\procesar_venta.php(113): mysqli_stmt->execute()
+#1 {main}
+[2025-05-08 01:13:01] Datos recibidos: {"cliente_id":"6","cliente_nombre":"ricardo puc","productos":[{"id":"4","name":"pepsi","price":12,"saleType":"unitario","quantity":1,"subtotal":12}],"subtotal":12,"impuestos":1.92,"total":13.92,"metodo_pago":"Efectivo","referencia_pago":"Efectivo: $20, Cambio: $6.08","nota_cierre":""}
+[2025-05-08 01:13:01] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 01:13:01] Estado de conexión mysqli: conectado
+[2025-05-08 01:13:01] Transacción iniciada
+[2025-05-08 01:13:01] Usuario ID: 1
+[2025-05-08 01:13:01] Cliente ID: 6
+[2025-05-08 01:13:01] Subtotal: 12, Impuestos: 1.92, Total: 13.92
+[2025-05-08 01:13:01] Método de pago: Efectivo
+[2025-05-08 01:13:01] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 01:13:01] Venta creada con ID: 5
+[2025-05-08 01:13:01] SQL Detalle: INSERT INTO DetalleVenta (ventaID, productoID, cantidad, tipoVenta, precioUnitario, subtotal) 
+                   VALUES (?, ?, ?, ?, ?, ?)
+[2025-05-08 01:13:01] Producto [0]: ID=4, Cantidad=1, Tipo=Unitario, Precio=12, Subtotal=12
+[2025-05-08 01:13:01] Detalle de venta agregado para producto 4
+[2025-05-08 01:13:01] Inventario actualizado para producto 4: -1 unidades
+[2025-05-08 01:13:01] SQL Pago: INSERT INTO Pago (ventaID, usuarioID, fechaPago, monto, tipoPago, referencia) 
+                VALUES (?, ?, NOW(), ?, ?, ?)
+[2025-05-08 01:13:01] Pago registrado para venta 5: 13.92
+[2025-05-08 01:13:01] Transacción completada y confirmada
+[2025-05-08 01:23:14] Datos recibidos: {"cliente_id":0,"cliente_nombre":"Cliente General","productos":[{"id":"6","name":"manzanita 1.5 L","price":30,"saleType":"unitario","quantity":1,"subtotal":30}],"subtotal":30,"impuestos":4.8,"total":34.8,"metodo_pago":"Efectivo","referencia_pago":"Efectivo: $500, Cambio: $465.20","nota_cierre":""}
+[2025-05-08 01:23:14] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 01:23:14] Estado de conexión mysqli: conectado
+[2025-05-08 01:23:14] Transacción iniciada
+[2025-05-08 01:23:14] Usuario ID: 1
+[2025-05-08 01:23:14] Cliente ID: 1
+[2025-05-08 01:23:14] Subtotal: 30, Impuestos: 4.8, Total: 34.8
+[2025-05-08 01:23:14] Método de pago: Efectivo
+[2025-05-08 01:23:14] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 01:23:14] ERROR: Cannot add or update a child row: a foreign key constraint fails (`siap`.`venta`, CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`clienteID`) REFERENCES `cliente` (`clienteID`))
+Trace: #0 C:\xampp\htdocs\Servidor-SIAP\controllers\procesar_venta.php(113): mysqli_stmt->execute()
+#1 {main}
+[2025-05-08 01:23:23] Datos recibidos: {"cliente_id":0,"cliente_nombre":"Cliente General","productos":[{"id":"6","name":"manzanita 1.5 L","price":30,"saleType":"unitario","quantity":1,"subtotal":30}],"subtotal":30,"impuestos":4.8,"total":34.8,"metodo_pago":"Efectivo","referencia_pago":"Efectivo: $500, Cambio: $465.20","nota_cierre":""}
+[2025-05-08 01:23:23] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 01:23:23] Estado de conexión mysqli: conectado
+[2025-05-08 01:23:23] Transacción iniciada
+[2025-05-08 01:23:23] Usuario ID: 1
+[2025-05-08 01:23:23] Cliente ID: 1
+[2025-05-08 01:23:23] Subtotal: 30, Impuestos: 4.8, Total: 34.8
+[2025-05-08 01:23:23] Método de pago: Efectivo
+[2025-05-08 01:23:23] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 01:23:23] ERROR: Cannot add or update a child row: a foreign key constraint fails (`siap`.`venta`, CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`clienteID`) REFERENCES `cliente` (`clienteID`))
+Trace: #0 C:\xampp\htdocs\Servidor-SIAP\controllers\procesar_venta.php(113): mysqli_stmt->execute()
+#1 {main}
+[2025-05-08 01:48:13] Datos recibidos: {"cliente_id":"new","cliente_nombre":"elizabeth","productos":[{"id":"5","name":"barritas","price":123,"saleType":"plancha","quantity":1,"subtotal":123},{"id":"4","name":"pepsi","price":80,"saleType":"media","quantity":1,"subtotal":80}],"subtotal":203,"impuestos":32.480000000000004,"total":235.48000000000002,"metodo_pago":"Tarjeta","referencia_pago":"Terminal: 1, Ref: 1234","nota_cierre":""}
+[2025-05-08 01:48:13] Iniciando procesamiento de venta con 2 productos
+[2025-05-08 01:48:13] Estado de conexión mysqli: conectado
+[2025-05-08 01:48:13] Transacción iniciada
+[2025-05-08 01:48:13] Usuario ID: 1
+[2025-05-08 01:48:13] Cliente ID: new
+[2025-05-08 01:48:13] Subtotal: 203, Impuestos: 32.48, Total: 235.48
+[2025-05-08 01:48:13] Método de pago: Tarjeta
+[2025-05-08 01:48:13] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 01:48:13] ERROR: Cannot add or update a child row: a foreign key constraint fails (`siap`.`venta`, CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`clienteID`) REFERENCES `cliente` (`clienteID`))
+Trace: #0 C:\xampp\htdocs\Servidor-SIAP\controllers\procesar_venta.php(113): mysqli_stmt->execute()
+#1 {main}
+[2025-05-08 01:48:20] Datos recibidos: {"cliente_id":"new","cliente_nombre":"elizabeth","productos":[{"id":"5","name":"barritas","price":123,"saleType":"plancha","quantity":1,"subtotal":123},{"id":"4","name":"pepsi","price":80,"saleType":"media","quantity":1,"subtotal":80}],"subtotal":203,"impuestos":32.480000000000004,"total":235.48000000000002,"metodo_pago":"Tarjeta","referencia_pago":"Terminal: 1, Ref: 1234","nota_cierre":""}
+[2025-05-08 01:48:20] Iniciando procesamiento de venta con 2 productos
+[2025-05-08 01:48:20] Estado de conexión mysqli: conectado
+[2025-05-08 01:48:20] Transacción iniciada
+[2025-05-08 01:48:20] Usuario ID: 1
+[2025-05-08 01:48:20] Cliente ID: new
+[2025-05-08 01:48:20] Subtotal: 203, Impuestos: 32.48, Total: 235.48
+[2025-05-08 01:48:20] Método de pago: Tarjeta
+[2025-05-08 01:48:20] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 01:48:20] ERROR: Cannot add or update a child row: a foreign key constraint fails (`siap`.`venta`, CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`clienteID`) REFERENCES `cliente` (`clienteID`))
+Trace: #0 C:\xampp\htdocs\Servidor-SIAP\controllers\procesar_venta.php(113): mysqli_stmt->execute()
+#1 {main}
+[2025-05-08 01:48:29] Datos recibidos: {"cliente_id":"new","cliente_nombre":"elizabeth","productos":[{"id":"5","name":"barritas","price":123,"saleType":"plancha","quantity":1,"subtotal":123},{"id":"4","name":"pepsi","price":80,"saleType":"media","quantity":1,"subtotal":80}],"subtotal":203,"impuestos":32.480000000000004,"total":235.48000000000002,"metodo_pago":"Tarjeta","referencia_pago":"Terminal: 1, Ref: 1234","nota_cierre":""}
+[2025-05-08 01:48:29] Iniciando procesamiento de venta con 2 productos
+[2025-05-08 01:48:29] Estado de conexión mysqli: conectado
+[2025-05-08 01:48:29] Transacción iniciada
+[2025-05-08 01:48:29] Usuario ID: 1
+[2025-05-08 01:48:29] Cliente ID: new
+[2025-05-08 01:48:29] Subtotal: 203, Impuestos: 32.48, Total: 235.48
+[2025-05-08 01:48:29] Método de pago: Tarjeta
+[2025-05-08 01:48:29] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 01:48:29] ERROR: Cannot add or update a child row: a foreign key constraint fails (`siap`.`venta`, CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`clienteID`) REFERENCES `cliente` (`clienteID`))
+Trace: #0 C:\xampp\htdocs\Servidor-SIAP\controllers\procesar_venta.php(113): mysqli_stmt->execute()
+#1 {main}
+[2025-05-08 01:49:24] Datos recibidos: {"cliente_id":"new","cliente_nombre":"elizabeth","productos":[{"id":"5","name":"barritas","price":123,"saleType":"plancha","quantity":1,"subtotal":123},{"id":"4","name":"pepsi","price":80,"saleType":"media","quantity":1,"subtotal":80}],"subtotal":203,"impuestos":32.480000000000004,"total":235.48000000000002,"metodo_pago":"Tarjeta","referencia_pago":"Terminal: 1, Ref: 1245","nota_cierre":""}
+[2025-05-08 01:49:24] Iniciando procesamiento de venta con 2 productos
+[2025-05-08 01:49:24] Estado de conexión mysqli: conectado
+[2025-05-08 01:49:24] Transacción iniciada
+[2025-05-08 01:49:24] Usuario ID: 1
+[2025-05-08 01:49:24] Cliente ID: new
+[2025-05-08 01:49:24] Subtotal: 203, Impuestos: 32.48, Total: 235.48
+[2025-05-08 01:49:24] Método de pago: Tarjeta
+[2025-05-08 01:49:24] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 01:49:24] ERROR: Cannot add or update a child row: a foreign key constraint fails (`siap`.`venta`, CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`clienteID`) REFERENCES `cliente` (`clienteID`))
+Trace: #0 C:\xampp\htdocs\Servidor-SIAP\controllers\procesar_venta.php(113): mysqli_stmt->execute()
+#1 {main}
+[2025-05-08 02:02:41] Datos recibidos: {"cliente_id":"new","cliente_nombre":"pablo","productos":[{"id":"5","name":"barritas","price":123,"saleType":"unitario","quantity":1,"subtotal":123},{"id":"4","name":"pepsi","price":12,"saleType":"unitario","quantity":2,"subtotal":24}],"subtotal":147,"impuestos":23.52,"total":170.52,"metodo_pago":"Efectivo","referencia_pago":"Efectivo: $500, Cambio: $329.48","nota_cierre":""}
+[2025-05-08 02:02:41] Iniciando procesamiento de venta con 2 productos
+[2025-05-08 02:02:41] Estado de conexión mysqli: conectado
+[2025-05-08 02:02:41] Transacción iniciada
+[2025-05-08 02:02:41] Usuario ID: 1
+[2025-05-08 02:02:41] Cliente ID: new
+[2025-05-08 02:02:41] Subtotal: 147, Impuestos: 23.52, Total: 170.52
+[2025-05-08 02:02:41] Método de pago: Efectivo
+[2025-05-08 02:02:41] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 02:02:41] ERROR: Cannot add or update a child row: a foreign key constraint fails (`siap`.`venta`, CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`clienteID`) REFERENCES `cliente` (`clienteID`))
+Trace: #0 C:\xampp\htdocs\Servidor-SIAP\controllers\procesar_venta.php(113): mysqli_stmt->execute()
+#1 {main}
+[2025-05-08 02:09:38] Datos recibidos: {"cliente_id":0,"cliente_nombre":"Cliente General","productos":[{"id":"3","name":"hola","price":147,"saleType":"unitario","quantity":1,"subtotal":147}],"subtotal":147,"impuestos":23.52,"total":170.52,"metodo_pago":"Efectivo","referencia_pago":"Efectivo: $500, Cambio: $329.48","nota_cierre":""}
+[2025-05-08 02:09:38] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 02:09:38] Estado de conexión mysqli: conectado
+[2025-05-08 02:09:38] Transacción iniciada
+[2025-05-08 02:09:38] Usuario ID: 1
+[2025-05-08 02:09:38] Cliente ID: 1
+[2025-05-08 02:09:38] Subtotal: 147, Impuestos: 23.52, Total: 170.52
+[2025-05-08 02:09:38] Método de pago: Efectivo
+[2025-05-08 02:09:38] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 02:09:38] Venta creada con ID: 13
+[2025-05-08 02:09:38] SQL Detalle: INSERT INTO DetalleVenta (ventaID, productoID, cantidad, tipoVenta, precioUnitario, subtotal) 
+                   VALUES (?, ?, ?, ?, ?, ?)
+[2025-05-08 02:09:38] Producto [0]: ID=3, Cantidad=1, Tipo=Unitario, Precio=147, Subtotal=147
+[2025-05-08 02:09:38] Detalle de venta agregado para producto 3
+[2025-05-08 02:09:38] Inventario actualizado para producto 3: -1 unidades
+[2025-05-08 02:09:38] SQL Pago: INSERT INTO Pago (ventaID, usuarioID, fechaPago, monto, tipoPago, referencia) 
+                VALUES (?, ?, NOW(), ?, ?, ?)
+[2025-05-08 02:09:38] Pago registrado para venta 13: 170.52
+[2025-05-08 02:09:38] Transacción completada y confirmada
+[2025-05-08 02:30:02] Datos recibidos: {"cliente_id":0,"cliente_nombre":"Cliente General","productos":[{"id":"5","name":"barritas","price":123,"saleType":"unitario","quantity":1,"subtotal":123},{"id":"4","name":"pepsi","price":12,"saleType":"unitario","quantity":1,"subtotal":12}],"subtotal":135,"impuestos":21.6,"total":156.6,"metodo_pago":"Efectivo","referencia_pago":"Efectivo: $8000, Cambio: $7843.40","nota_cierre":""}
+[2025-05-08 02:30:02] Iniciando procesamiento de venta con 2 productos
+[2025-05-08 02:30:02] Estado de conexión mysqli: conectado
+[2025-05-08 02:30:02] Transacción iniciada
+[2025-05-08 02:30:02] Usuario ID: 1
+[2025-05-08 02:30:02] Cliente ID: 1
+[2025-05-08 02:30:02] Subtotal: 135, Impuestos: 21.6, Total: 156.6
+[2025-05-08 02:30:02] Método de pago: Efectivo
+[2025-05-08 02:30:02] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 02:30:02] Venta creada con ID: 14
+[2025-05-08 02:30:02] SQL Detalle: INSERT INTO DetalleVenta (ventaID, productoID, cantidad, tipoVenta, precioUnitario, subtotal) 
+                   VALUES (?, ?, ?, ?, ?, ?)
+[2025-05-08 02:30:02] Producto [0]: ID=5, Cantidad=1, Tipo=Unitario, Precio=123, Subtotal=123
+[2025-05-08 02:30:02] Detalle de venta agregado para producto 5
+[2025-05-08 02:30:02] Inventario actualizado para producto 5: -1 unidades
+[2025-05-08 02:30:02] Producto [1]: ID=4, Cantidad=1, Tipo=Unitario, Precio=12, Subtotal=12
+[2025-05-08 02:30:02] Detalle de venta agregado para producto 4
+[2025-05-08 02:30:02] Inventario actualizado para producto 4: -1 unidades
+[2025-05-08 02:30:02] SQL Pago: INSERT INTO Pago (ventaID, usuarioID, fechaPago, monto, tipoPago, referencia) 
+                VALUES (?, ?, NOW(), ?, ?, ?)
+[2025-05-08 02:30:02] Pago registrado para venta 14: 156.6
+[2025-05-08 02:30:02] Transacción completada y confirmada
+[2025-05-08 02:31:53] Datos recibidos: {"cliente_id":0,"cliente_nombre":"Cliente General","productos":[{"id":"4","name":"pepsi","price":12,"saleType":"unitario","quantity":1,"subtotal":12}],"subtotal":12,"impuestos":1.92,"total":13.92,"metodo_pago":"Efectivo","referencia_pago":"Efectivo: $20, Cambio: $6.08","nota_cierre":""}
+[2025-05-08 02:31:53] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 02:31:53] Estado de conexión mysqli: conectado
+[2025-05-08 02:31:53] Transacción iniciada
+[2025-05-08 02:31:53] Usuario ID: 1
+[2025-05-08 02:31:53] Cliente ID: 1
+[2025-05-08 02:31:53] Subtotal: 12, Impuestos: 1.92, Total: 13.92
+[2025-05-08 02:31:53] Método de pago: Efectivo
+[2025-05-08 02:31:53] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 02:31:53] Venta creada con ID: 15
+[2025-05-08 02:31:53] SQL Detalle: INSERT INTO DetalleVenta (ventaID, productoID, cantidad, tipoVenta, precioUnitario, subtotal) 
+                   VALUES (?, ?, ?, ?, ?, ?)
+[2025-05-08 02:31:53] Producto [0]: ID=4, Cantidad=1, Tipo=Unitario, Precio=12, Subtotal=12
+[2025-05-08 02:31:53] Detalle de venta agregado para producto 4
+[2025-05-08 02:31:53] Inventario actualizado para producto 4: -1 unidades
+[2025-05-08 02:31:53] SQL Pago: INSERT INTO Pago (ventaID, usuarioID, fechaPago, monto, tipoPago, referencia) 
+                VALUES (?, ?, NOW(), ?, ?, ?)
+[2025-05-08 02:31:53] Pago registrado para venta 15: 13.92
+[2025-05-08 02:31:53] Transacción completada y confirmada
+[2025-05-08 02:49:36] Datos recibidos: {"cliente_id":0,"cliente_nombre":"Cliente General","productos":[{"id":"4","name":"pepsi","price":12,"saleType":"unitario","quantity":1,"subtotal":12}],"subtotal":12,"impuestos":1.92,"total":13.92,"metodo_pago":"Efectivo","referencia_pago":"Efectivo: $50, Cambio: $36.08","nota_cierre":"","usuario_id":0}
+[2025-05-08 02:49:36] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 02:49:36] Estado de conexión mysqli: conectado
+[2025-05-08 02:49:36] Transacción iniciada
+[2025-05-08 02:49:36] Usuario no encontrado en sesión, usando ID por defecto: 1
+[2025-05-08 02:49:36] Usuario ID final para la venta: 1
+[2025-05-08 02:49:36] Cliente ID: 1
+[2025-05-08 02:49:36] Subtotal: 12, Impuestos: 1.92, Total: 13.92
+[2025-05-08 02:49:36] Método de pago: Efectivo
+[2025-05-08 02:49:36] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 02:49:36] Venta creada con ID: 16
+[2025-05-08 02:49:36] SQL Detalle: INSERT INTO DetalleVenta (ventaID, productoID, cantidad, tipoVenta, precioUnitario, subtotal) 
+                   VALUES (?, ?, ?, ?, ?, ?)
+[2025-05-08 02:49:36] Producto [0]: ID=4, Cantidad=1, Tipo=Unitario, Precio=12, Subtotal=12
+[2025-05-08 02:49:36] Detalle de venta agregado para producto 4
+[2025-05-08 02:49:36] Inventario actualizado para producto 4: -1 unidades
+[2025-05-08 02:49:36] SQL Pago: INSERT INTO Pago (ventaID, usuarioID, fechaPago, monto, tipoPago, referencia) 
+                VALUES (?, ?, NOW(), ?, ?, ?)
+[2025-05-08 02:49:36] Pago registrado para venta 16: 13.92
+[2025-05-08 02:49:36] Transacción completada y confirmada
+[2025-05-08 02:58:48] Datos recibidos: {"cliente_id":0,"cliente_nombre":"Cliente General","productos":[{"id":"4","name":"pepsi","price":12,"saleType":"unitario","quantity":1,"subtotal":12}],"subtotal":12,"impuestos":1.92,"total":13.92,"metodo_pago":"Efectivo","referencia_pago":"Efectivo: $50, Cambio: $36.08","nota_cierre":"","usuario_id":0}
+[2025-05-08 02:58:48] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 02:58:48] Estado de conexión mysqli: conectado
+[2025-05-08 02:58:48] Transacción iniciada
+[2025-05-08 02:58:48] Usuario no encontrado en sesión, usando ID por defecto: 1
+[2025-05-08 02:58:48] Usuario ID final para la venta: 1
+[2025-05-08 02:58:48] Cliente ID: 1
+[2025-05-08 02:58:48] Subtotal: 12, Impuestos: 1.92, Total: 13.92
+[2025-05-08 02:58:48] Método de pago: Efectivo
+[2025-05-08 02:58:48] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 02:58:48] Venta creada con ID: 17
+[2025-05-08 02:58:48] SQL Detalle: INSERT INTO DetalleVenta (ventaID, productoID, cantidad, tipoVenta, precioUnitario, subtotal) 
+                   VALUES (?, ?, ?, ?, ?, ?)
+[2025-05-08 02:58:48] Producto [0]: ID=4, Cantidad=1, Tipo=Unitario, Precio=12, Subtotal=12
+[2025-05-08 02:58:48] Detalle de venta agregado para producto 4
+[2025-05-08 02:58:48] Inventario actualizado para producto 4: -1 unidades
+[2025-05-08 02:58:48] SQL Pago: INSERT INTO Pago (ventaID, usuarioID, fechaPago, monto, tipoPago, referencia) 
+                VALUES (?, ?, NOW(), ?, ?, ?)
+[2025-05-08 02:58:48] Pago registrado para venta 17: 13.92
+[2025-05-08 02:58:48] Transacción completada y confirmada
+[2025-05-08 04:22:42] Datos recibidos: {"cliente_id":"9","cliente_nombre":"lolo ","productos":[{"id":"4","name":"pepsi","price":12,"saleType":"unitario","quantity":100,"subtotal":1200}],"subtotal":1200,"impuestos":192,"total":1392,"metodo_pago":"Tarjeta","referencia_pago":"Terminal: 1, Ref: 1234","nota_cierre":"","usuario_id":0}
+[2025-05-08 04:22:42] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 04:22:42] Estado de conexión mysqli: conectado
+[2025-05-08 04:22:42] Transacción iniciada
+[2025-05-08 04:22:42] Usuario no encontrado en sesión, usando ID por defecto: 1
+[2025-05-08 04:22:42] Usuario ID final para la venta: 1
+[2025-05-08 04:22:42] Cliente ID: 9
+[2025-05-08 04:22:42] Subtotal: 1200, Impuestos: 192, Total: 1392
+[2025-05-08 04:22:42] Método de pago: Tarjeta
+[2025-05-08 04:22:42] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 04:22:42] Venta creada con ID: 18
+[2025-05-08 04:22:42] SQL Detalle: INSERT INTO DetalleVenta (ventaID, productoID, cantidad, tipoVenta, precioUnitario, subtotal) 
+                   VALUES (?, ?, ?, ?, ?, ?)
+[2025-05-08 04:22:42] Producto [0]: ID=4, Cantidad=100, Tipo=Unitario, Precio=12, Subtotal=1200
+[2025-05-08 04:22:42] Detalle de venta agregado para producto 4
+[2025-05-08 04:22:42] Inventario actualizado para producto 4: -100 unidades
+[2025-05-08 04:22:42] SQL Pago: INSERT INTO Pago (ventaID, usuarioID, fechaPago, monto, tipoPago, referencia) 
+                VALUES (?, ?, NOW(), ?, ?, ?)
+[2025-05-08 04:22:42] Pago registrado para venta 18: 1392
+[2025-05-08 04:22:42] Transacción completada y confirmada
+[2025-05-08 05:16:04] Datos recibidos: {"cliente_id":28,"cliente_nombre":"hgoehoir","productos":[{"id":"4","name":"pepsi","price":12,"saleType":"unitario","quantity":1,"subtotal":12}],"subtotal":12,"impuestos":1.92,"total":13.92,"metodo_pago":"Tarjeta","referencia_pago":"Terminal: 1, Ref: 7657","nota_cierre":"","usuario_id":0}
+[2025-05-08 05:16:04] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 05:16:04] Estado de conexión mysqli: conectado
+[2025-05-08 05:16:04] Transacción iniciada
+[2025-05-08 05:16:04] Usuario no encontrado en sesión, usando ID por defecto: 1
+[2025-05-08 05:16:04] Usuario ID final para la venta: 1
+[2025-05-08 05:16:04] Cliente ID: 28
+[2025-05-08 05:16:04] Subtotal: 12, Impuestos: 1.92, Total: 13.92
+[2025-05-08 05:16:04] Método de pago: Tarjeta
+[2025-05-08 05:16:04] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 05:16:04] Venta creada con ID: 19
+[2025-05-08 05:16:04] SQL Detalle: INSERT INTO DetalleVenta (ventaID, productoID, cantidad, tipoVenta, precioUnitario, subtotal) 
+                   VALUES (?, ?, ?, ?, ?, ?)
+[2025-05-08 05:16:04] Producto [0]: ID=4, Cantidad=1, Tipo=Unitario, Precio=12, Subtotal=12
+[2025-05-08 05:16:04] Detalle de venta agregado para producto 4
+[2025-05-08 05:16:04] Inventario actualizado para producto 4: -1 unidades
+[2025-05-08 05:16:04] SQL Pago: INSERT INTO Pago (ventaID, usuarioID, fechaPago, monto, tipoPago, referencia) 
+                VALUES (?, ?, NOW(), ?, ?, ?)
+[2025-05-08 05:16:04] Pago registrado para venta 19: 13.92
+[2025-05-08 05:16:04] Transacción completada y confirmada
+[2025-05-08 05:17:59] Datos recibidos: {"cliente_id":29,"cliente_nombre":"berenice de los angeles","productos":[{"id":"4","name":"pepsi","price":12,"saleType":"unitario","quantity":1,"subtotal":12},{"id":"6","name":"manzanita 1.5 L","price":30,"saleType":"unitario","quantity":1,"subtotal":30}],"subtotal":42,"impuestos":6.72,"total":48.72,"metodo_pago":"Tarjeta","referencia_pago":"Terminal: 1, Ref: 7894","nota_cierre":"","usuario_id":0}
+[2025-05-08 05:17:59] Iniciando procesamiento de venta con 2 productos
+[2025-05-08 05:17:59] Estado de conexión mysqli: conectado
+[2025-05-08 05:17:59] Transacción iniciada
+[2025-05-08 05:17:59] Usuario no encontrado en sesión, usando ID por defecto: 1
+[2025-05-08 05:17:59] Usuario ID final para la venta: 1
+[2025-05-08 05:17:59] Cliente ID: 29
+[2025-05-08 05:17:59] Subtotal: 42, Impuestos: 6.72, Total: 48.72
+[2025-05-08 05:17:59] Método de pago: Tarjeta
+[2025-05-08 05:17:59] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 05:17:59] Venta creada con ID: 20
+[2025-05-08 05:17:59] SQL Detalle: INSERT INTO DetalleVenta (ventaID, productoID, cantidad, tipoVenta, precioUnitario, subtotal) 
+                   VALUES (?, ?, ?, ?, ?, ?)
+[2025-05-08 05:17:59] Producto [0]: ID=4, Cantidad=1, Tipo=Unitario, Precio=12, Subtotal=12
+[2025-05-08 05:17:59] Detalle de venta agregado para producto 4
+[2025-05-08 05:17:59] Inventario actualizado para producto 4: -1 unidades
+[2025-05-08 05:17:59] Producto [1]: ID=6, Cantidad=1, Tipo=Unitario, Precio=30, Subtotal=30
+[2025-05-08 05:17:59] Detalle de venta agregado para producto 6
+[2025-05-08 05:17:59] Inventario actualizado para producto 6: -1 unidades
+[2025-05-08 05:17:59] SQL Pago: INSERT INTO Pago (ventaID, usuarioID, fechaPago, monto, tipoPago, referencia) 
+                VALUES (?, ?, NOW(), ?, ?, ?)
+[2025-05-08 05:17:59] Pago registrado para venta 20: 48.72
+[2025-05-08 05:17:59] Transacción completada y confirmada
+[2025-05-08 06:32:36] Datos recibidos: {"cliente_id":1,"cliente_nombre":"Cliente General","productos":[{"id":"5","name":"barritas","price":123,"saleType":"unitario","quantity":1,"subtotal":123}],"subtotal":123,"impuestos":19.68,"total":142.68,"metodo_pago":"Tarjeta","referencia_pago":"Terminal: 1, Ref: 1234","nota_cierre":"","usuario_id":0}
+[2025-05-08 06:32:36] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 06:32:36] Estado de conexión mysqli: conectado
+[2025-05-08 06:32:36] Transacción iniciada
+[2025-05-08 06:32:36] Usuario no encontrado en sesión, usando ID por defecto: 1
+[2025-05-08 06:32:36] Usuario ID final para la venta: 1
+[2025-05-08 06:32:36] Cliente ID: 1
+[2025-05-08 06:32:36] Subtotal: 123, Impuestos: 19.68, Total: 142.68
+[2025-05-08 06:32:36] Método de pago: Tarjeta
+[2025-05-08 06:32:36] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 06:32:36] Venta creada con ID: 21
+[2025-05-08 06:32:36] SQL Detalle: INSERT INTO DetalleVenta (ventaID, productoID, cantidad, tipoVenta, precioUnitario, subtotal) 
+                   VALUES (?, ?, ?, ?, ?, ?)
+[2025-05-08 06:32:36] Producto [0]: ID=5, Cantidad=1, Tipo=Unitario, Precio=123, Subtotal=123
+[2025-05-08 06:32:36] Detalle de venta agregado para producto 5
+[2025-05-08 06:32:36] Inventario actualizado para producto 5: -1 unidades
+[2025-05-08 06:32:36] SQL Pago: INSERT INTO Pago (ventaID, usuarioID, fechaPago, monto, tipoPago, referencia) 
+                VALUES (?, ?, NOW(), ?, ?, ?)
+[2025-05-08 06:32:36] Pago registrado para venta 21: 142.68
+[2025-05-08 06:32:36] Transacción completada y confirmada
+[2025-05-08 07:12:28] Datos recibidos: {"cliente_id":6,"cliente_nombre":"ricardo puc","productos":[{"id":"4","name":"pepsi","price":100,"saleType":"plancha","quantity":1,"subtotal":100}],"subtotal":100,"impuestos":16,"total":116,"metodo_pago":"Efectivo","referencia_pago":"Efectivo: $200, Cambio: $84.00","nota_cierre":"","usuario_id":0}
+[2025-05-08 07:12:28] Iniciando procesamiento de venta con 1 productos
+[2025-05-08 07:12:28] Estado de conexión mysqli: conectado
+[2025-05-08 07:12:28] Transacción iniciada
+[2025-05-08 07:12:28] Usuario no encontrado en sesión, usando ID por defecto: 1
+[2025-05-08 07:12:28] Usuario ID final para la venta: 1
+[2025-05-08 07:12:28] Cliente ID: 6
+[2025-05-08 07:12:28] Subtotal: 100, Impuestos: 16, Total: 116
+[2025-05-08 07:12:28] Método de pago: Efectivo
+[2025-05-08 07:12:28] SQL Venta: INSERT INTO Venta (usuarioID, clienteID, fechaVenta, subtotal, impuestos, total, metodoPago, estado) 
+                 VALUES (?, ?, NOW(), ?, ?, ?, ?, 'Pagada')
+[2025-05-08 07:12:28] Venta creada con ID: 22
+[2025-05-08 07:12:28] SQL Detalle: INSERT INTO DetalleVenta (ventaID, productoID, cantidad, tipoVenta, precioUnitario, subtotal) 
+                   VALUES (?, ?, ?, ?, ?, ?)
+[2025-05-08 07:12:28] Producto [0]: ID=4, Cantidad=1, Tipo=Plancha, Precio=100, Subtotal=100
+[2025-05-08 07:12:28] Detalle de venta agregado para producto 4
+[2025-05-08 07:12:28] Inventario actualizado para producto 4: -24 unidades
+[2025-05-08 07:12:28] SQL Pago: INSERT INTO Pago (ventaID, usuarioID, fechaPago, monto, tipoPago, referencia) 
+                VALUES (?, ?, NOW(), ?, ?, ?)
+[2025-05-08 07:12:28] Pago registrado para venta 22: 116
+[2025-05-08 07:12:28] Transacción completada y confirmada

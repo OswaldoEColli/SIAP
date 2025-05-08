@@ -1,0 +1,279 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color:#30343F;
+}
+
+/* Floating Logo que se mueve con el sidebar */
+.floating-logo {
+  position: fixed;
+  top: 20px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  z-index: 30;
+  transition: left 0.3s ease;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.floating-logo .logo {
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 12px;
+  margin-right: 20px;
+  color: white;
+}
+
+.floating-logo .logo-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 180px;
+  background-color: #30343F;
+  color: white;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  transition: left 0.3s ease;
+}
+
+.sidebar.active {
+  left: -180px; /* Sidebar se oculta completamente */
+}
+
+/* Cuando el sidebar está oculto, el logo se mueve también */
+.sidebar.active ~ .floating-logo {
+  left: -65px; /* Deja visible solo parte del logo */
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 16px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 16px;
+  height: 52px; /* Mantiene el espacio para el tema */
+}
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sidebar.active ~ .main-content {
+  margin-left: 60px; /* Espacio para la parte visible del logo */
+  width: calc(100% - 60px);
+}
+
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.menu-item.active {
+  background-color: #E4D9FF;
+  color: black;
+  border-left: 3px solid white; 
+  font-weight: 500;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.menu-item i {
+  margin-right: 12px;
+  font-size: 18px;
+  width: 20px;
+  text-align: center;
+}
+
+.logout-btn {
+  margin-top: auto;
+  margin-left: 16px;
+  margin-right: 16px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.logout-btn i {
+  margin-right: 8px;
+}
+
+/* Main Content Styles */
+.main-content {
+  margin-left: 200px;
+  width: calc(100% - 200px);
+  height: 800px;
+  background-color: #1E2749;
+  padding: 32px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.title {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: #b8b8b8;
+  font-size: 13px;
+}
+
+.user-welcome {
+  color: white;
+  font-size: 13px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card {
+  height: 160px;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.card-image {
+  align-self: flex-end;
+  height: 80px;
+}
+
+.card-icon {
+  font-size: 48px;
+  color: white;
+  align-self: flex-end;
+}
+
+.sales-card {
+  background-color: #9f84ff;
+  background-image: linear-gradient(45deg, #9f84ff, #7a5fff);
+}
+
+.customers-card {
+  background-color: #6b9fff;
+  background-image: linear-gradient(45deg, #6b9fff, #4e7fff);
+}
+
+.inventory-card {
+  background-color: #ff9f7a;
+  background-image: linear-gradient(45deg, #ff9f7a, #ff7a5f);
+}
+
+.welcome {
+  background-color: #3c3f5c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      left: -180px;
+  }
+
+  .sidebar.active {
+      left: 0;
+  }
+
+  .floating-logo {
+      left: -124px;
+  }
+  
+  .sidebar.active ~ .floating-logo {
+      left: 16px;
+  }
+
+  .main-content {
+      margin-left: 60px;
+      width: calc(100% - 60px);
+      border-radius: 0;
+  }
+  
+  .sidebar.active ~ .main-content {
+      margin-left: 200px;
+      width: calc(100% - 200px);
+  }
+  
+  .dashboard {
+      grid-template-columns: 1fr;
+  }
+}

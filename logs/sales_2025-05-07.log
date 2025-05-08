@@ -1,0 +1,215 @@
+[2025-05-07 20:09:26] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:09:26] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 4
+    [nombre] => prueba
+    [apellidos] => prueba
+    [nombreUsuario] => collioswaldo
+    [tipoUsuario] => Vendedor
+    [email] => collioswaldo@gmail.com
+    [caja_actual_id] => 1
+)
+
+[2025-05-07 20:09:26] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:09:26] Caja abierta encontrada. ID: 1
+[2025-05-07 20:09:26] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:09:26] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 4
+    [nombre] => prueba
+    [apellidos] => prueba
+    [nombreUsuario] => collioswaldo
+    [tipoUsuario] => Vendedor
+    [email] => collioswaldo@gmail.com
+    [caja_actual_id] => 1
+)
+
+[2025-05-07 20:09:26] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:09:26] Caja abierta encontrada. ID: 1
+[2025-05-07 20:09:26] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:09:26] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 4
+    [nombre] => prueba
+    [apellidos] => prueba
+    [nombreUsuario] => collioswaldo
+    [tipoUsuario] => Vendedor
+    [email] => collioswaldo@gmail.com
+    [caja_actual_id] => 1
+)
+
+[2025-05-07 20:09:26] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:09:26] Caja abierta encontrada. ID: 1
+[2025-05-07 20:09:26] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:09:26] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 4
+    [nombre] => prueba
+    [apellidos] => prueba
+    [nombreUsuario] => collioswaldo
+    [tipoUsuario] => Vendedor
+    [email] => collioswaldo@gmail.com
+    [caja_actual_id] => 1
+)
+
+[2025-05-07 20:09:26] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:09:26] Caja abierta encontrada. ID: 1
+[2025-05-07 20:09:28] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:09:28] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 4
+    [nombre] => prueba
+    [apellidos] => prueba
+    [nombreUsuario] => collioswaldo
+    [tipoUsuario] => Vendedor
+    [email] => collioswaldo@gmail.com
+    [caja_actual_id] => 1
+)
+
+[2025-05-07 20:09:28] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:09:28] Caja abierta encontrada. ID: 1
+[2025-05-07 20:09:32] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:09:32] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 4
+    [nombre] => prueba
+    [apellidos] => prueba
+    [nombreUsuario] => collioswaldo
+    [tipoUsuario] => Vendedor
+    [email] => collioswaldo@gmail.com
+    [caja_actual_id] => 1
+)
+
+[2025-05-07 20:09:32] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:09:32] Caja abierta encontrada. ID: 1
+[2025-05-07 20:14:03] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:14:03] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 1
+    [nombre] => Oswaldo
+    [apellidos] => Colli
+    [nombreUsuario] => admin
+    [tipoUsuario] => Administrador
+    [email] => admin@test.com
+)
+
+[2025-05-07 20:14:03] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:14:03] Caja abierta encontrada. ID: 1
+[2025-05-07 20:14:08] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:14:08] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 1
+    [nombre] => Oswaldo
+    [apellidos] => Colli
+    [nombreUsuario] => admin
+    [tipoUsuario] => Administrador
+    [email] => admin@test.com
+    [caja_actual_id] => 1
+)
+
+[2025-05-07 20:14:08] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:14:08] Caja abierta encontrada. ID: 1
+[2025-05-07 20:14:32] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:14:32] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 1
+    [nombre] => Oswaldo
+    [apellidos] => Colli
+    [nombreUsuario] => admin
+    [tipoUsuario] => Administrador
+    [email] => admin@test.com
+    [caja_actual_id] => 1
+)
+
+[2025-05-07 20:14:32] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:14:32] Caja abierta encontrada. ID: 1
+[2025-05-07 20:14:42] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:14:42] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 1
+    [nombre] => Oswaldo
+    [apellidos] => Colli
+    [nombreUsuario] => admin
+    [tipoUsuario] => Administrador
+    [email] => admin@test.com
+    [caja_actual_id] => 1
+)
+
+[2025-05-07 20:14:42] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:14:42] Caja abierta encontrada. ID: 1
+[2025-05-07 20:22:00] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:22:00] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 1
+    [nombre] => Oswaldo
+    [apellidos] => Colli
+    [nombreUsuario] => admin
+    [tipoUsuario] => Administrador
+    [email] => admin@test.com
+    [cierre_caja_exitoso] => La caja ha sido cerrada exitosamente
+)
+
+[2025-05-07 20:22:00] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:22:00] No se encontró caja abierta. Limpiando variables de sesión relacionadas.
+[2025-05-07 20:22:00] Mensaje de éxito encontrado: La caja ha sido cerrada exitosamente
+[2025-05-07 20:25:44] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:25:44] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 1
+    [nombre] => Oswaldo
+    [apellidos] => Colli
+    [nombreUsuario] => admin
+    [tipoUsuario] => Administrador
+    [email] => admin@test.com
+    [cierre_caja_exitoso] => La caja ha sido cerrada exitosamente
+)
+
+[2025-05-07 20:25:44] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:25:44] No se encontró caja abierta. Limpiando variables de sesión relacionadas.
+[2025-05-07 20:25:44] Mensaje de éxito encontrado: La caja ha sido cerrada exitosamente
+[2025-05-07 20:27:58] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 20:27:58] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 1
+    [nombre] => Oswaldo
+    [apellidos] => Colli
+    [nombreUsuario] => admin
+    [tipoUsuario] => Administrador
+    [email] => admin@test.com
+    [nota_apertura] => turno matutino
+    [cierre_caja_exitoso] => La caja ha sido cerrada exitosamente
+)
+
+[2025-05-07 20:27:58] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 20:27:58] No se encontró caja abierta. Limpiando variables de sesión relacionadas.
+[2025-05-07 20:27:58] Mensaje de éxito encontrado: La caja ha sido cerrada exitosamente
+[2025-05-07 21:03:41] Cargando sales.php - Session ID: 8v9cln60l7pvqorg3logdf6tq9
+[2025-05-07 21:03:41] Variables de sesión: Array
+(
+    [loggedin] => 1
+    [usuarioID] => 1
+    [nombre] => Oswaldo
+    [apellidos] => Colli
+    [nombreUsuario] => admin
+    [tipoUsuario] => Administrador
+    [email] => admin@test.com
+    [nota_apertura] => turno vespertino
+    [caja_actual_id] => 4
+    [monto_inicial] => 800
+)
+
+[2025-05-07 21:03:41] Ejecutando consulta para verificar cajas abiertas: SELECT reporteID FROM ReporteCaja WHERE estado = 'Abierta' LIMIT 1
+[2025-05-07 21:03:41] Caja abierta encontrada. ID: 4

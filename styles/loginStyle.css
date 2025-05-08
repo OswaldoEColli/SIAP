@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #30343F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.login-container {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px; /* Aumentado el ancho del contenedor */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.logo-container {
+    flex: 0 0 180px; /* Aumentado el espacio para el logo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2rem;
+}
+
+.logo {
+    width: 200px; /* Aumentado el tamaño del logo */
+    height: 200px; /* Aumentado el tamaño del logo */
+    border-radius: 0%;
+    object-fit: contain;
+}
+
+.form-container {
+    flex: 1;
+}
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+}
+
+.input-container {
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-family: 'Work Sans', sans-serif;
+}
+
+/* Añadiendo padding-left para todos los inputs con íconos */
+input[type="email"], 
+input[type="password"] {
+    padding-left: 2.5rem;
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.icon-left {
+    left: 0.5rem;
+}
+
+.icon-right {
+    right: 0.5rem;
+    cursor: pointer;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 1.5rem;
+}
+
+.forgot-password a {
+    color: #1f2937;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-login {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 2rem; /* Bordes más redondeados para el botón */
+    font-size: 1rem;
+    font-family: 'Work Sans', sans-serif;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    transition: background-color 0.2s;
+}
+
+.btn-login:hover {
+    background-color: #1e40af;
+}
+
+.register {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.register a {
+    color: #1e3a8a;
+    text-decoration: none;
+    font-weight: bold;
+}

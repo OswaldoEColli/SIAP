@@ -1,0 +1,510 @@
+/* Mantener estilos existentes hasta llegar a las secciones de modal */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Work Sans', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* MODIFICADO: Sidebar con transición añadida */
+.sidebar {
+    width: 180px;
+    background-color: #30343F;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    transition: left 0.3s ease;
+}
+
+/* NUEVO: Clase para ocultar sidebar */
+.sidebar.active {
+    left: -180px; /* Sidebar se oculta completamente */
+}
+
+/* NUEVO: Floating Logo */
+.floating-logo {
+    position: fixed;
+    top: 20px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    z-index: 30;
+    transition: left 0.3s ease;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.floating-logo .logo {
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 12px;
+    margin-right: 20px;
+    color: white;
+}
+
+.floating-logo .logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* NUEVO: Cuando el sidebar está oculto, el logo se mueve también */
+.sidebar.active ~ .floating-logo {
+    left: -65px; /* Deja visible solo parte del logo */
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* MODIFICADO: Alineado a la derecha */
+    padding: 0 16px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 16px;
+    height: 52px; /* Mantiene el espacio para el tema */
+}
+.sidebar.active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60px; /* Matches the visible portion of the sidebar */
+    background-color: #30343F; /* Matches the sidebar's color */
+    z-index: 9; /* Ensure it appears below the floating logo */
+    opacity: 1; /* Fully visible when sidebar is closed */
+    visibility: visible; /* Ensure it's visible */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60px; /* Matches the visible portion of the sidebar */
+    background-color: #30343F; /* Matches the sidebar's color */
+    z-index: 9; /* Ensure it appears below the floating logo */
+    opacity: 0; /* Hidden when sidebar is open */
+    visibility: hidden; /* Ensure it's not visible */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.menu-item.active {
+    background-color: #E4D9FF;
+    color: black;
+    border-left: 3px solid white; 
+    font-weight: 500;
+    border-top-right-radius: 12px; /* Solo arriba a la derecha */
+    border-bottom-right-radius: 12px; /* Solo abajo a la derecha */
+  }
+
+  .menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+  }
+
+.menu-item i {
+    margin-right: 12px;
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.logout-btn {
+    margin-top: auto;
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.logout-btn i {
+    margin-right: 8px;
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    margin-left: 180px;
+    height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+
+/* NUEVO: Ajuste del contenido cuando sidebar está oculto */
+.sidebar.active ~ .main-content {
+    margin-left: 60px; /* Espacio para la parte visible del logo */
+}
+
+.content-area {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.add-product-btn {
+    background-color: #0084ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.add-product-btn:hover {
+    background-color: #0066cc;
+}
+
+.add-product-btn i {
+    margin-right: 8px;
+}
+
+.products-table-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+    font-weight: 600;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+.action-btn {
+    background-color: #30343F;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.action-btn:hover {
+    background-color: #232c3d;
+}
+
+.action-cell {
+    text-align: center;
+}
+
+/* Modal Styles - MODIFICADO para hacerlo mucho más compacto */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+/* Estilos para el scrollbar personalizado */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: #0084ff;
+    border-radius: 4px;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 85%;
+    max-width: 380px; /* Reducido aún más */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    max-height: 75vh; /* Altura máxima reducida */
+    overflow-y: auto; /* Permitir scroll */
+    /* Personalizar scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: #0084ff #f0f0f0;
+}
+
+.modal-header {
+    padding: 10px 12px; /* Más compacto */
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; /* Mantener encabezado visible al hacer scroll */
+    top: 0;
+    background-color: white;
+    z-index: 1;
+}
+
+.modal-title {
+    font-weight: 600;
+    font-size: 15px; /* Más pequeño */
+    color: #333;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 16px; /* Más pequeño */
+    cursor: pointer;
+    color: #777;
+    padding: 3px;
+}
+
+.modal-body {
+    padding: 10px 12px; /* Más compacto */
+}
+
+.form-group {
+    margin-bottom: 8px; /* Aún más compacto */
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 2px; /* Mínimo espacio */
+    font-weight: 500;
+    color: #555;
+    font-size: 13px; /* Más pequeño */
+}
+
+.form-input {
+    width: 100%;
+    padding: 6px; /* Más compacto */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px; /* Más pequeño */
+    height: 30px; /* Altura fija más pequeña */
+}
+
+.form-input:focus {
+    border-color: #0084ff;
+    outline: none;
+}
+
+/* Input de tipo textarea sin altura fija */
+textarea.form-input {
+    height: auto;
+    min-height: 50px; /* Altura mínima */
+}
+
+/* Layout mejorado para inputs en filas */
+.form-row {
+    display: flex;
+    gap: 8px; /* Reducido */
+    margin-bottom: 8px; /* Reducido */
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.modal-footer {
+    padding: 8px 12px; /* Más compacto */
+    border-top: 1px solid #e0e0e0;
+    text-align: right;
+    position: sticky; /* Mantener footer visible al hacer scroll */
+    bottom: 0;
+    background-color: white;
+    z-index: 1;
+}
+
+.btn {
+    padding: 5px 10px; /* Más pequeño */
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    margin-left: 6px; /* Reducido */
+    font-size: 13px; /* Más pequeño */
+}
+
+.btn-secondary {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.btn-primary {
+    background-color: #0084ff;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #ff3b30;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #d0d0d0;
+}
+
+.btn-primary:hover {
+    background-color: #0066cc;
+}
+
+.btn-danger:hover {
+    background-color: #e02e24;
+}
+
+/* Action Menu */
+.action-menu {
+    position: absolute;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    z-index: 10;
+    min-width: 150px;
+    display: none;
+}
+
+.action-menu-item {
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-menu-item:hover {
+    background-color: #f0f0f0;
+}
+
+.action-menu-item i {
+    margin-right: 8px;
+    width: 16px;
+    text-align: center;
+}
+
+.stock-warning {
+    color: #ff3b30;
+    font-weight: 500;
+}
+
+/* MODIFICADO: Media queries para móviles */
+@media (max-width: 768px) {
+    .sidebar {
+        left: -180px; /* Sidebar comienza oculto */
+    }
+
+    .sidebar.active {
+        left: 0; /* Sidebar se muestra completamente al activarse */
+    }
+
+    .floating-logo {
+        left: -124px; /* Logo parcialmente visible inicialmente */
+    }
+    
+    .sidebar.active ~ .floating-logo {
+        left: 16px; /* Logo completamente visible cuando sidebar activo */
+    }
+
+    .main-content {
+        margin-left: 60px; /* Espacio inicial para logo visible */
+    }
+    
+    .sidebar.active ~ .main-content {
+        margin-left: 180px; /* Espacio cuando sidebar está activo */
+    }
+    
+    /* Modal ajustado para móviles */
+    .modal-content {
+        width: 95%;
+        max-width: 100%;
+        margin: 10px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .form-row .form-group {
+        margin-bottom: 0;
+    }
+}

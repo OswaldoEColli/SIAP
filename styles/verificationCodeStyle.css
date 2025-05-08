@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Work Sans', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #30343F;
+}
+
+.verification-container {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.verification-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2d3142;
+    margin-bottom: 12px;
+}
+
+.verification-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.form-group {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.form-label {
+    font-family: 'Raleway', sans-serif;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #2d3142;
+    font-weight: 700;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #4568dc;
+}
+
+.form-control::placeholder {
+    color: #999;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.btn-cancel {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+.btn-cancel:hover {
+    background-color: #f5f5f5;
+}
+
+.btn-send {
+    background-color: #2d3989;
+    color: white;
+}
+
+.btn-send:hover {
+    background-color: #222c6b;
+}
+
+@media (max-width: 576px) {
+    .verification-container {
+        padding: 30px 20px;
+        margin: 0 15px;
+    }
+    
+    .button-group {
+        flex-direction: column-reverse;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

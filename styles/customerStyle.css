@@ -1,0 +1,508 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Work Sans', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 180px;
+    background-color: #30343F;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    transition: left 0.3s ease;
+}
+
+/* NUEVO: Clase para ocultar sidebar */
+.sidebar.active {
+    left: -180px; /* Sidebar se oculta completamente */
+}
+
+.sidebar.active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60px; /* Matches the visible portion of the sidebar */
+    background-color: #30343F; /* Matches the sidebar's color */
+    z-index: 9; /* Ensure it appears below the floating logo */
+    opacity: 1; /* Fully visible when sidebar is closed */
+    visibility: visible; /* Ensure it's visible */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60px; /* Matches the visible portion of the sidebar */
+    background-color: #30343F; /* Matches the sidebar's color */
+    z-index: 9; /* Ensure it appears below the floating logo */
+    opacity: 0; /* Hidden when sidebar is open */
+    visibility: hidden; /* Ensure it's not visible */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* NUEVO: Floating Logo */
+.floating-logo {
+    position: fixed;
+    top: 20px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    z-index: 30;
+    transition: left 0.3s ease;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.floating-logo .logo {
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 12px;
+    margin-right: 20px;
+    color: white;
+}
+
+.floating-logo .logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* NUEVO: Cuando el sidebar está oculto, el logo se mueve también */
+.sidebar.active ~ .floating-logo {
+    left: -65px; /* Deja visible solo parte del logo */
+}
+
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 16px;
+    height: 52px; /* Mantiene el espacio para el tema */
+}
+
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.menu-item.active {
+    background-color: #E4D9FF;
+    color: black;
+    border-left: 3px solid white; 
+    font-weight: 500;
+    border-top-right-radius: 12px; /* Solo arriba a la derecha */
+    border-bottom-right-radius: 12px; /* Solo abajo a la derecha */
+  }
+
+  .menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+  }
+
+.menu-item i {
+    margin-right: 12px;
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.logout-btn {
+    margin-top: auto;
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.logout-btn i {
+    margin-right: 8px;
+}
+
+/* MODIFICADO: Main content con transición */
+.main-content {
+    flex-grow: 1;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    margin-left: 180px;
+    transition: margin-left 0.3s ease;
+}
+
+/* NUEVO: Ajuste del contenido cuando sidebar está oculto */
+.sidebar.active ~ .main-content {
+    margin-left: 60px; /* Espacio para la parte visible del logo */
+    
+}
+
+
+
+.content-area {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.customers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.customers-header h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.add-customer-btn {
+    background-color: #2e3b7c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add-customer-btn i {
+    margin-right: 8px;
+}
+
+.add-customer-btn:hover {
+    background-color: #232e61;
+}
+
+.search-box {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.search-box i {
+    color: #888;
+    margin: 0 10px;
+}
+
+.search-box input {
+    flex-grow: 1;
+    border: none;
+    padding: 8px;
+    outline: none;
+}
+
+.customers-table-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+    font-weight: 600;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+.action-btn {
+    background-color: #30343F;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.action-btn:hover {
+    background-color: #232c3d;
+}
+
+.action-cell {
+    text-align: center;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-active {
+    background-color: #e1f5e9;
+    color: #0c6e39;
+}
+
+.status-inactive {
+    background-color: #ffeeee;
+    color: #c62828;
+}
+
+/* MODIFICADO: Media queries para móviles */
+@media (max-width: 768px) {
+    .sidebar {
+        left: -180px; /* Sidebar comienza oculto */
+    }
+
+    .sidebar.active {
+        left: 0; /* Sidebar se muestra completamente al activarse */
+    }
+
+    .floating-logo {
+        left: -124px; /* Logo parcialmente visible inicialmente */
+    }
+    
+    .sidebar.active ~ .floating-logo {
+        left: 16px; /* Logo completamente visible cuando sidebar activo */
+    }
+
+    .main-content {
+        margin-left: 60px; /* Espacio inicial para logo visible */
+    }
+    
+    .sidebar.active ~ .main-content {
+        margin-left: 180px; /* Espacio cuando sidebar está activo */
+    }
+    
+    /* ELIMINADO: Selector sidebar-toggle ya que no se usa */
+}
+
+.customer-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-footer button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#cancel-modal {
+    background-color: #eee;
+}
+
+#save-customer {
+    background-color: #2e3b7c;
+    color: white;
+}
+
+.logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* Añadir este código al archivo styles/customerStyle.css o incluirlo en el <style> de customer.php */
+
+/* Estilos para las notificaciones animadas */
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    max-width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.5s ease;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.toast-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-notification.success {
+    background-color: #28a745;
+    border-left: 5px solid #1e7e34;
+}
+
+.toast-notification.error {
+    background-color: #dc3545;
+    border-left: 5px solid #bd2130;
+}
+
+.toast-notification.info {
+    background-color: #17a2b8;
+    border-left: 5px solid #138496;
+}
+
+.toast-notification .notification-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.toast-notification .notification-content {
+    flex: 1;
+}
+
+.toast-notification .close-notification {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.toast-notification .close-notification:hover {
+    opacity: 1;
+}
+
+.toast-notification .progress-bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    animation: progress-animation 4s linear;
+}
+
+@keyframes progress-animation {
+    0% { width: 100%; }
+    100% { width: 0%; }
+}
